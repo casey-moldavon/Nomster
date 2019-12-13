@@ -6,32 +6,41 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Group 4 Project</title>
 
+    <!-- <style>
+        body {
+            background-image: url(assets/images/background-image.jpg);
+            background-repeat: no-repeat;
+            background-size: 1500px 900px;
+            background-color: #7c7c7c;
+        }
+    </style> -->
+
     <link rel="stylesheet" href="style.css">
 
 </head>
 <body>
-
-    <Header>
-        <div class="head">
-            <h1>Nomster</h1>
-            <h4>App Title Here!</h4>
-        </div>
-    </Header>
-
     <div class="container">
-        <img src="assets/images/monster-1.png" id="image-display">
 
-        <!-- default search (without text-box input): geo-location -->
-        <!-- quick blurb defining the app "find cuisine near you" -->
-        <input type="text" id="text-box" placeholder="Enter location here!">
-        <button type="button" id="search-button">Search</button>
+            <div class="head">
+                <h1 id="title">Nomster</h1>
+                <h4 id="blurb">Off the eaten path</h4>
+            </div>
+
+
+            <div class="search-container">
+                <img src="assets/images/monster-1.png" id="image-display">
+
+                <!-- default search (without text-box input): geo-location -->
+                <!-- quick blurb defining the app "find cuisine near you" -->
+                <input type="text" id="text-box" placeholder="Enter location here!">
+                <button type="button" id="search-button">Search</button>
+            </div>
+
+            <footer id="footer">
+                <button class="button" id="about-tab">About</button>
+                <button class="button" id="contact-tab">Contact Us</button>
+            </footer>
+
     </div>
-
-    <footer>
-        <button class="button" id="about-tab"></button>
-        <button class="button" id="contact-tab"></button>
-    </footer>
-
-    
 </body>
 </html>

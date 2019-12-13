@@ -1,0 +1,105 @@
+body {
+    background-image: url(assets/images/background-image-1.jpg);
+    background-repeat: no-repeat;
+    background-size: 1500px 1200px;
+    background-color: #7c7c7c;
+}
+
+
+.container {
+    background-color: #633ba3;
+    border-radius: 42px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 25%;
+    margin-right: 25%;
+    padding-top: 1px;
+    padding-left: 1px;
+    padding-right: 1px;
+    align-content: center;
+}
+
+        .head {
+            background-color: rgb(7, 0, 55);
+            border-radius: 42px;
+            margin: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+            #title {
+                margin: 0;
+                color: #77dfff;
+                font-size: 80px;
+                font-weight: bold;
+                text-align: center;
+            }
+            #blurb {
+                margin-top: -10px;
+                color: #c17ecb;
+                font-weight: bold;
+                text-align: center;
+            }
+
+    #image-display {
+        border-radius: 42px;
+        width: 420px;
+        Height: 420px;
+        margin-left: 20%;
+    }
+
+    #text-box {
+        margin-left: 27%;
+        padding: 10px;
+    }
+    #search-button {
+        border-radius: 42px;
+        border-color: #c17ecb;
+        margin-left: 2%;
+        padding: 10px;
+        background-color: rgb(7, 0, 55);
+        color: #77dfff;
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center; 
+    }
+
+
+
+    #footer {
+        background-color: rgb(7, 0, 55);
+        color: #77dfff;
+        width: 100%;
+        margin-top: 70px;
+        margin-bottom: 0;
+        margin-left: 0;
+        margin-right: 0;
+
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-bottom-left-radius: 42px;
+        border-bottom-right-radius: 42px;
+    }
+
+            #about-tab {
+                border-radius: 42px;
+                border-color: #c17ecb;
+                margin-left: 2.5%;
+                padding: 10px;
+                background-color: rgb(7, 0, 55);
+                color: #77dfff;
+                font-size: 20px;
+                font-weight: bold;
+                text-align: center;
+            }
+
+            #contact-tab {
+                border-radius: 42px;
+                border-color: #c17ecb;
+                margin-left: 2%;
+                padding: 10px;
+                background-color: rgb(7, 0, 55);
+                color: #77dfff;
+                font-size: 20px;
+                font-weight: bold;
+                text-align: center;
+            }
