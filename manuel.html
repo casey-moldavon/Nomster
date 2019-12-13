@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="US">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dev</title>
+</head>
+
+<body>
+    <script type='text/javascript' src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
+    <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol'></script>
+    <script type='text/javascript'>
+        var cuisines = [
+            "Ainu",
+            "Albanian",
+            "Argentine",
+            "Andhra",
+            "Anglo-Indian",
+            "Arab",
+            "Armenian",
+            "Assyrian",
+            "Awadhi",
+            "Azerbaijani",
+            "Balochi",
+            "Belarusian",
+            "Bangladeshi",
+            "Bengali",
+            "Berber",
+            "Brazilian",
+            "Buddhist",
+            "Bulgarian",
+            "Cajun",
+            "Cantonese",
+            "Caribbean",
+            "Chechen",
+            "Chinese cuisine",
+            "Chinese Islamic",
+            "Circassian",
+            "Crimean Tatar",
+            "Cypriot",
+            "Danish",
+            "English",
+            "Estonian",
+            "French",
+            "Filipino",
+            "Georgian",
+            "German",
+            "Goan",
+            "Goan Catholic",
+            "Greek",
+            "Gujarati",
+            "Hyderabad",
+            "Hong Kong Western",
+            "Indian cuisine",
+            "Indian Chinese",
+            "Indian Singaporean cuisine",
+            "Indonesian",
+            "Inuit",
+            "Irish",
+            "Italian American",
+            "Italian cuisine",
+            "Jamaican",
+            "Japanese",
+            "Jewish",
+            "Karnataka",
+            "Kazakh",
+            "Keralite",
+            "Korean",
+            "Kurdish",
+            "Laotian",
+            "Lebanese",
+            "Latvian",
+            "Lithuanian",
+            "Louisiana Creole",
+            "Maharashtrian",
+            "Mangalorean",
+            "Malay",
+            "Malaysian Chinese cuisine",
+            "Malaysian Indian cuisine",
+            "Mediterranean cuisine",
+            "Mexican",
+            "Mordovian",
+            "Mughal",
+            "Native American",
+            "Nepalese",
+            "New Mexican",
+            "Odia",
+            "Parsi",
+            "Pashtun",
+            "Polish",
+            "Pennsylvania Dutch",
+            "Pakistani",
+            "Peranakan",
+            "Persian",
+            "Peruvian",
+            "Portuguese",
+            "Punjabi",
+            "Rajasthani",
+            "Romanian",
+            "Russian",
+            "Sami",
+            "Serbian",
+            "Sindhi",
+            "Slovak",
+            "Slovenian",
+            "Somali",
+            "South Indian",
+            "Soviet",
+            "Spanish",
+            "Sri Lankan",
+            "Taiwanese",
+            "Tatar",
+            "Thai",
+            "Turkish",
+            "Tamil",
+            "Udupi",
+            "Ukrainian",
+            "Vietnamese",
+            "Yamal",
+            "Zambian",
+            "Zanzibari" ];
+
+        jQuery.ajaxPrefilter(function (options) {
+            if (options.crossDomain && jQuery.support.cors) {
+                options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
+            }
+        });
+
+        /*
+         * @param{Object} obj {
+                pins: [ {
+                         latitude
+                         longitude
+                         label
+                     },... ]
+                    }
+        */
+        function getMap() {
+            var map = new Microsoft.Maps.Map("#map",
+                {
+                    credentials: "ArfOhekfSK9rly4qjcdt20SypfRiLnIYtUbxAzrv6-PDjseOmmMguOsqBYcrD-sW",
+                });
+        }
+
+        /**
+         * @param{Object} obj {
+         *  location
+         *  latitude
+         *  longitude
+         *  categories
+         * }
+         */
+        function getRestaraunts(obj) {
+            query = Object.entries(obj).map(a => a[0].concat("=", a[1])).join("&");
+            $.ajax({
+                url: 'https://api.yelp.com/v3/businesses/search?' + query,
+                method: "GET",
+                headers: {
+                    authorization: "Bearer WUfWoOVmAoVzU0GZeM50mAJstQPhp1eYDImVEA6S6n79IQ09MrCj-3f1q0T9pmdWbK5sh7dCDo9-ey18DdRwxzoyLTOUBXsSkG8NMMaJvDsB_Xrv7KRHjyVrapbyXXYx"
+                }
+            }).then(function (response) {
+                console.log(response);
+            });
+        }
+
+        getRestaraunts({ term: "restaraunts", location: "160 Spear Street, San Francisco, CA", range: 20000 });
+    </script>
+
+    <div id="map" style="width: 400px; height: 400px">
+</body>
+<coordsml>
