@@ -149,9 +149,13 @@
          *  longitude
          *  categories
          * }
-         */
-        function getRestaraunts(obj) {
+         */        
+        function getRestaraunts(obj, listing) {
             query = Object.entries(obj).map(a => a[0].concat("=", a[1])).join("&");
+            
+            listing = listing || [];
+            obj.limit = obj.limit || 50;
+
             $.ajax({
                 url: 'https://api.yelp.com/v3/businesses/search?' + query,
                 method: "GET",
@@ -160,7 +164,13 @@
                 }
             }).then(function (response) {
                 console.log(response);
-            });
+                listing.push(response);
+                obj.offset = obj.offset || 0;
+                obj.offset += obj.limit;
+                if (obj.offset < response.total) {
+                    getRestaraunts(obj,listing);
+                }
+            });            
         }
 
         getRestaraunts({ term: "restaraunts", location: "160 Spear Street, San Francisco, CA", range: 20000 });
