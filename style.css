@@ -8,7 +8,7 @@
 body {
     background-image: url(assets/images/background-image-4.jpg);
     background-repeat: no-repeat;
-    background-size: 1500px 900px;
+    background-size: 1500px 950px;
     background-color: #7c7c7c;
     margin-right: 0;
 }
@@ -21,12 +21,13 @@ body {
     border-width: 7px 7px 7px 7px;
     border-radius: 42px;
 
+    width: 60vw;
     height: 800px;
 
     margin-top: 20px;
     margin-bottom: 5%;
-    margin-left: 25vw;
-    margin-right: 25vw;
+    margin-left: 18vw;
+    /* margin-right: 20vw; */
     padding-top: 1px;
     padding-left: 1px;
     padding-right: 1px;
@@ -42,10 +43,10 @@ body {
 
             height: 200px;
 
-            margin-top: 5%;
-            margin-bottom: 5%;
-            margin-left: 5%;
-            margin-right: 5%;
+            margin-top: 2.5%;
+            margin-bottom: 2.5%;
+            margin-left: 2.5%;
+            margin-right: 2.5%;
             text-align: center;
             font-family: 'Nosifer', cursive;
         }
@@ -71,12 +72,10 @@ body {
 
     #image-display {
         border-radius: 42px;
-        /* width: 50%; */
-        /* Height: 50%; */
         width: 25vw;
         height: 25vw;
-        margin-top: -5%;
-        margin-left: 22.5%;
+        margin-top: -2.5%;
+        margin-left: 27%;
     }
 
     #location {
@@ -103,19 +102,7 @@ body {
 
 
     #footer {
-        /* background-color: rgb(7, 0, 55);
-        color: #77dfff; */
-        /* width: 100%; */
         margin-top: 70px;
-        margin-bottom: -1px;
-        margin-left: -1px;
-        margin-right: -1px;
-
-        padding-top: 10px;
-        padding-left: 2px;
-        padding-bottom: 10px;
-        border-bottom-left-radius: 42px;
-        border-bottom-right-radius: 42px;
     }
 
             #about-tab {
