@@ -1,3 +1,10 @@
+/* @font-face {
+    font-family: "";
+    src: url("./assets/fonts/Chomsky.woff") format('woff');
+} */
+
+
+
 body {
     background-image: url(assets/images/background-image-4.jpg);
     background-repeat: no-repeat;
@@ -13,10 +20,13 @@ body {
     border: solid #dadada;
     border-width: 7px 7px 7px 7px;
     border-radius: 42px;
+
+    height: 800px;
+
     margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 27%;
-    margin-right: 27%;
+    margin-bottom: 5%;
+    margin-left: 25vw;
+    margin-right: 25vw;
     padding-top: 1px;
     padding-left: 1px;
     padding-right: 1px;
@@ -29,48 +39,57 @@ body {
             border: solid #dadada;
             border-width: 5px 5px 5px 5px;
             border-radius: 42px;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            margin-left: 25px;
-            margin-right: 25px;
-            padding: 10px;
+
+            height: 200px;
+
+            margin-top: 5%;
+            margin-bottom: 5%;
+            margin-left: 5%;
+            margin-right: 5%;
             text-align: center;
+            font-family: 'Nosifer', cursive;
         }
             #title {
                 margin: 0;
                 color: #77dfff;
-                font-size: 110px;
-                -webkit-text-stroke: 1.5px rgb(7, 0, 55);
+                font-size: 5vw;
+                -webkit-text-stroke: 1px rgb(7, 0, 55);
+                /* -webkit-text-stroke: 1.5px white; */
                 font-weight: bold;
                 text-align: center;
             }
             #blurb {
                 margin-top: -10px;
                 /* color: #c17ecb; */
-                color: rgb(7, 0, 55);
-                font-size: 20px;
+                color: rgb(255, 0, 42);
+                -webkit-text-stroke: .5px rgb(142, 0, 0);
+                /* font-size: 28px; */
+                font-size: 2vw;
                 font-weight: bold;
                 text-align: center;
             }
 
     #image-display {
         border-radius: 42px;
-        width: 380px;
-        Height: 380px;
-        margin-left: 22.5%;
+        /* width: 50%; */
+        /* Height: 50%; */
+        width: 30vw;
+        height: 30vw;
+        margin-top: -5%;
+        margin-left: 25%;
     }
 
     #text-box {
         /* border-color: black; */
         border-color: #77dfff;
-        margin-top: 10px;
+        margin-top: 5px;
         margin-left: 30%;
         padding: 12px;
     }
     #search-button {
         border-radius: 42px;
         border-color: #c17ecb;
-        margin-top: 10px;
+        margin-top: 5px;
         margin-left: 2%;
         padding: 10px;
         background-color: rgb(7, 0, 55);
@@ -84,10 +103,9 @@ body {
 
 
     #footer {
-        background-color: rgb(7, 0, 55);
-        /* background-color: #7467ad; */
-        color: #77dfff;
-        width: 100%;
+        /* background-color: rgb(7, 0, 55);
+        color: #77dfff; */
+        /* width: 100%; */
         margin-top: 70px;
         margin-bottom: -1px;
         margin-left: -1px;
