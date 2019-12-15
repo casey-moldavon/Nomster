@@ -39,9 +39,17 @@
                 <!-- Slider goes here! -->
 
                 <div class="slidecontainer">
-                    <p id="slider-text" >Range of Search</p>
-                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                    <p id="slider-text" >Range of Search:
+                    <output name="slider-output" id="myOutput">5</output> Miles</p>
+
+                    <input type="range" min="1" max="25" value="5" class="slider" id="myRange"
+                    oninput="myOutput.value = myRange.value">
                 </div>
+
+                <!-- <form name="registrationForm">
+                    <input type="range" name="ageInputName" id="ageInputId" value="24" min="1" max="100" oninput="ageOutputId.value = ageInputId.value">
+                    <output name="ageOutputName" id="ageOutputId">24</output>
+                </form> -->
 
             </div>
 
@@ -73,10 +81,6 @@
 
 
         </div>
-
-        <!-- list ot restauraunts (aka: NomNoms) -->
-
-        <!-- map location (aka: New Eating Path) -->
 
 
     </div>
