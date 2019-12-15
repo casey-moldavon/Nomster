@@ -118,7 +118,12 @@
             "Vietnamese",
             "Yamal",
             "Zambian",
-            "Zanzibari" ];
+            "Zanzibari"];
+
+        var msnAPIKey = "zGmgIxAUPiSuIgFacn4OCuA0tKsaIubPjtIsnz5jIJe0XQzok8BtY22hEffCOgc2uEZUnZ3OwdynFY0Zgp_QI2SJ3bUeD1IFe9fpsMc0HLYK38rt77-bZxooj1j1XXYx";
+        var lcAPIKey = "WUfWoOVmAoVzU0GZeM50mAJstQPhp1eYDImVEA6S6n79IQ09MrCj-3f1q0T9pmdWbK5sh7dCDo9-ey18DdRwxzoyLTOUBXsSkG8NMMaJvDsB_Xrv7KRHjyVrapbyXXYx";
+
+        var apiKey = msnAPIKey;
 
         jQuery.ajaxPrefilter(function (options) {
             if (options.crossDomain && jQuery.support.cors) {
@@ -149,31 +154,148 @@
          *  longitude
          *  categories
          * }
-         */        
-        function getRestaraunts(obj, listing) {
-            query = Object.entries(obj).map(a => a[0].concat("=", a[1])).join("&");
-            
-            listing = listing || [];
-            obj.limit = obj.limit || 50;
+         */
 
-            $.ajax({
-                url: 'https://api.yelp.com/v3/businesses/search?' + query,
-                method: "GET",
-                headers: {
-                    authorization: "Bearer WUfWoOVmAoVzU0GZeM50mAJstQPhp1eYDImVEA6S6n79IQ09MrCj-3f1q0T9pmdWbK5sh7dCDo9-ey18DdRwxzoyLTOUBXsSkG8NMMaJvDsB_Xrv7KRHjyVrapbyXXYx"
+        class Restaraunts {
+            constructor(queryObj, callback, force) {
+                this.listing = {
+                    businesses: [],
+                    total: 0
+                };
+                this.requestRetries = 3;
+                this.requestTimeout = 2000;
+
+                this.localStoreID = "nearbyRestaraunts";
+                this.callback = callback || function () { };
+
+                force = force || false;
+
+                if (force || !this.load()) {
+                    this.retrieve(queryObj);
                 }
-            }).then(function (response) {
-                console.log(response);
-                listing.push(response);
-                obj.offset = obj.offset || 0;
-                obj.offset += obj.limit;
-                if (obj.offset < response.total) {
-                    getRestaraunts(obj,listing);
+                else {
+                    this.callback(this);
                 }
-            });            
+            }
+
+            load() {
+                var temp = localStorage.getItem(this.localStoreID);
+                if (temp) {
+                    this.listing = JSON.parse(temp);
+                    return true;
+                }
+                return false;
+            }
+
+            store() {
+                localStorage.setItem(this.localStoreID, JSON.stringify(this.listing));
+                return true;
+            }
+
+            clear() {
+                this.listing = {
+                    businesses: [],
+                    total: 0
+                };
+                localStorage.setItem(this.localStoreID, undefined);
+            }
+
+            retrieve(queryObj) {
+                queryObj.offset = queryObj.offset || 0;
+                queryObj.limit = queryObj.limit || 50;
+
+                var self = this;
+
+                var query = Object.entries(queryObj).map(a => a[0].concat("=", a[1])).join("&");
+                var ajaxUrl = 'https://api.yelp.com/v3/businesses/search?' + query; 
+                console.log("INITIAL SUBMIT: ".concat(ajaxUrl));
+                $.ajax({
+                    url: 'https://api.yelp.com/v3/businesses/search?' + query,
+                    method: "GET",
+                    headers: {
+                        authorization: "Bearer ".concat(apiKey),
+                    }
+                }).then(function (data, textStatus, jqXHR) {
+                    console.log("PROCESSING INITIAL: ".concat(this.url));
+                    console.log(data);
+                    self.listing.total = data.total;
+
+                    for (var i = 0; i < data.businesses.length; ++i) {
+                        self.listing.businesses.push(data.businesses[i]);
+                    }
+
+                    function error(jqXHR, textStatus, errorThrown) {
+                        /* this used in ajax calls so "this" is the ajax object */
+                        var ajaxUrl = "".concat(this.url);
+                        if (this.retries > 0) {
+                            --this.retries;
+                            setTimeout(function () {
+                                console.log("RESUBMIT: ".concat(ajaxUrl));
+                                $.ajax({
+                                    url: ajaxUrl,
+                                    method: "GET",
+                                    headers: {
+                                        authorization: "Bearer ".concat(apiKey),
+                                    },
+                                    timeout: this.timeout,
+                                    retries: this.retries
+                                }).then(function (data, textStatus, jqXHR) {
+                                    console.log("PROCESSING RESUBMIT: ".concat(this.url));
+                                    console.log(data);
+                                    for (var i = 0; i < data.businesses.length; ++i) {
+                                        self.listing.businesses.push(data.businesses[i]);
+                                    }
+                                    self.store();
+                                    if (self.listing.businesses.length === self.listing.total) {
+                                        self.callback(self);
+                                    }
+                                },
+                                function(jqXHR, textStatus, errorThrown) {
+                                    error.call(this,jqXHR, textStatus, errorThrown);
+                                });
+                            }, this.timeout);
+                        }
+                    }
+
+                    for (queryObj.offset = queryObj.limit; queryObj.offset < self.listing.total; queryObj.offset += queryObj.limit) {
+                        var query = Object.entries(queryObj).map(a => a[0].concat("=", a[1])).join("&");
+                        var ajaxUrl = 'https://api.yelp.com/v3/businesses/search?' + query; 
+                        console.log("SUBMIT: ".concat(ajaxUrl));
+                        $.ajax({
+                            url: 'https://api.yelp.com/v3/businesses/search?' + query,
+                            method: "GET",
+                            headers: {
+                                authorization: "Bearer ".concat(apiKey),
+                            },
+                            timeout: 2000,
+                            retries: 3
+                        }).then(function (data, textStatus, jqXHR) {
+                            console.log("PROCESSING SUBMIT: ".concat(this.url));
+                            console.log(data);
+                            for (var i = 0; i < data.businesses.length; ++i) {
+                                self.listing.businesses.push(data.businesses[i]);
+                            }
+                            self.store();
+                            if (this.retries === 0 || self.listing.businesses.length === self.listing.total) {
+                                console.log("MEH!");
+                                self.callback(self);
+                            }
+                        },
+                        function(jqXHR, textStatus, errorThrown) {
+                                    error.call(this,jqXHR, textStatus, errorThrown);
+                        });
+                    }
+                }).fail(function () {
+                    console.log("FAIL OUTER")
+                });
+            }
         }
 
-        getRestaraunts({ term: "restaraunts", location: "160 Spear Street, San Francisco, CA", range: 20000 });
+        var c = new Restaraunts({ term: "restaraunts", location: "160 Spear Street, San Francisco, CA", range: 1000 }, function (obj) {
+            console.log("SUCCESS!: ");
+            console.log(obj);
+        }, true);
+        //getRestaraunts({ term: "restaraunts", location: "160 Spear Street, San Francisco, CA", range: 1000 });
     </script>
 
     <div id="map" style="width: 400px; height: 400px">
