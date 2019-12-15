@@ -19,6 +19,8 @@
 
 
 
+    // ========== Self note (Casey): To-Do list: ==========
+
     // list of actions:
 
     // - page 1 to page 2 fade transition (after search button is pressed)

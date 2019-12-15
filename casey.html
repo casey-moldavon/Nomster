@@ -11,6 +11,7 @@
 
 </head>
 <body>
+    
     <!-- ========== First Page ========== -->
     <div id="page-1" class="container">
 
@@ -25,18 +26,7 @@
                 <form class="yelp">
                     <input placeholder="location" id="location" type="text">
                     <input id="search-button" type="submit">
-                  </form>
-
-
-
-                <!-- default search (without text-box input): geo-location -->
-                <!-- quick blurb defining the app "find cuisine near you" -->
-
-                <!-- <input type="text" id="text-box" placeholder="Enter location here!">
-                <button type="button" id="search-button">Search</button> -->
-
-
-                <!-- Slider goes here! -->
+                </form>
 
                 <div class="slidecontainer">
                     <p id="slider-text" >Range of Search:
@@ -45,23 +35,11 @@
                     <input type="range" min="1" max="25" value="5" class="slider" id="myRange"
                     oninput="myOutput.value = myRange.value">
                 </div>
-
-                <!-- <form name="registrationForm">
-                    <input type="range" name="ageInputName" id="ageInputId" value="24" min="1" max="100" oninput="ageOutputId.value = ageInputId.value">
-                    <output name="ageOutputName" id="ageOutputId">24</output>
-                </form> -->
-
             </div>
-
     </div>
 
     <!-- ========== Second Page ========== -->
-
     <div id="page-2" class="container">
-        <!-- <div class="head">
-            <h1 id="title">Nomster</h1>
-            <h4 id="blurb">Off the eaten path</h4>
-        </div> -->
 
         <!-- This search-results div will have other generated search divs appended to it to display search results -->
         <div class="search-results">
@@ -69,9 +47,7 @@
 
                 <!-- generated divs will/should append here -->
 
-
         </div>
-
 
         <!-- This results-mapdiv will house the generated map once an option is selected from the search-results div list -->
         <div class="results-map">
@@ -79,10 +55,7 @@
 
                 <!-- generated divs will/should append here -->
 
-
         </div>
-
-
     </div>
 
     <!-- angled monster page 2 -->
@@ -92,15 +65,11 @@
             <div class="container-bubble" id="bubble-2"></div>
                 <div class="container-bubble" id="bubble-3"><p id="nomster-text">Click Me to go back</p></div>
 
-
-
-
     <div class="footer">
             <!-- tab to return to home screen (resets app) -->
             <button class="button" id="home-tab">Home</button>
             <button class="button" id="about-tab">About Us</button>
             <button class="button" id="contact-tab">Contact Us</button>
     </div>
-
 </body>
 </html>
