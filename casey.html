@@ -10,8 +10,8 @@
     <link href="https://fonts.googleapis.com/css?family=Nosifer&display=swap" rel="stylesheet">
 
 </head>
-<body>
-    
+<body onload="GetMap();">
+
     <!-- ========== First Page ========== -->
     <div id="page-1" class="container">
 
@@ -54,6 +54,7 @@
             <h3 id="path">Path to Nom Noms</h3>
 
                 <!-- generated divs will/should append here -->
+                <div id="myMap" style="position:relative;width:600px;height:400px;"></div>
 
         </div>
     </div>
@@ -71,5 +72,67 @@
             <button class="button" id="about-tab">About Us</button>
             <button class="button" id="contact-tab">Contact Us</button>
     </div>
+
+
+
+
+<script type="text/javascript">
+
+var userLat = "";
+    var userLong = "";
+    var userLocationGlobal = "";
+    function GetMap() {
+        var map = new Microsoft.Maps.Map('#myMap', {
+            credentials: "ArfOhekfSK9rly4qjcdt20SypfRiLnIYtUbxAzrv6-PDjseOmmMguOsqBYcrD-sW"
+        });
+        //Request the user's location
+        navigator.geolocation.getCurrentPosition(function (position) {
+            var loc = new Microsoft.Maps.Location(
+                position.coords.latitude,
+                position.coords.longitude);
+                userLat = position.coords.latitude;
+                userLong = position.coords.longitude;
+                userLocationGlobal = loc;
+            //Add a pushpin at the user's location.
+            var pin = new Microsoft.Maps.Pushpin(loc);
+            map.entities.push(pin);
+            //Center the map on the user's location.
+            map.setView({ center: loc, zoom: 15 });
+        });
+    }
+    setTimeout(function(){
+        console.log(userLong);
+        console.log(userLat);
+    }, 5000);
+    </script>
+
+
+
+
+
+
+
+
+<!-- 
+<script type="text/javascript">
+    $(".search-button").on ("click", function(){
+        preventDefault();
+
+    $("#page-1").fadeOut(2000);
+    $("#page-2").fadeIn(2000);
+    $("#home-tab").show(1000);
+    $("#image-display-2").slideLeft(3000);
+
+        $("#bubble-1").delay(5000).fadeIn(1000);
+        $("#bubble-2").delay(6000).fadeIn(1000);
+        $("#bubble-3").delay(7000).fadeIn(1000);
+    });
+</script> -->
+
+
+<script src="script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
+
 </body>
 </html>

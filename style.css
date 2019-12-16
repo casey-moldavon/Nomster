@@ -30,11 +30,11 @@ body {
 }
 
 /* page 1 default is visibile */
-#page-1 {
+#page-2 {
     visibility: visible;
 }
 /* page 2 default is hidden */
-#page-2 {
+#page-1 {
     visibility: hidden;
 }
 
