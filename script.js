@@ -1,5 +1,4 @@
 
-
 // ========================= This is the Map onload =========================
 var userLat = "";
 var userLong = "";
@@ -29,59 +28,23 @@ setTimeout(function () {
 }, 10000);
 
 
-// ========================= Search listing =========================
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
 // ========================= Design animations/displays + page shifts =========================
-$("#search-button").on("click", function(event) {
+
+$("#search-button").on("click", function (event) {
     event.preventDefault();
 
-    $("#page-2").fadeIn(2000, function(){
+    $("#page-2").fadeIn(3000, function () {
         $(this).css("visibility", "visible");
     });
 
-    $("#home-tab").fadeIn(2000, function(){
+    $("#home-tab").fadeIn(3000, function () {
         $(this).css("visibility", "visible");
     });
 
-    $("#image-display-2").delay(3000).show("slide", {direction: "left" }, 1000);
+    $("#image-display-2").delay(3000).show("slide", { direction: "left" }, 1000);
     $("#bubble-1").delay(4000).fadeIn(4200);
     $("#bubble-2").delay(4500).fadeIn(4200);
     $("#bubble-3").delay(5000).fadeIn(4200);
@@ -90,33 +53,37 @@ $("#search-button").on("click", function(event) {
 });
 
 
-// idea: monster pops up over page while content loats and then disappears
+    // idea: monster pops up over page while content loats and then disappears
 
 
-// $("#home-tab").on("click", function(event) {
-//     event.preventDefault();
 
-//     $("#page-2").fadeOut(2000, function(){
-//         $(this).css("display", "none");
-//     });
 
-    // $("#home-tab").fadeOut(2000, function(){
-    //     $(this).css("display", "none");
+
+
+    // $("#home-tab").on("click", function () {
+
+    //     $("#page-2").fadeOut(2000)
+        // , function(){
+        // $(this).css("display", "none");
+        // });
+
+        // $("#home-tab").fadeOut(2000, function(){
+        //     $(this).css("display", "none");
+        // });
+
+        // $("#image-display-2").fadeOut(2000, function(){
+        //     $(this).css("display", "none");
+        // });
+
+        // $("#bubble-1").fadeOut(2000, function(){
+        //     $(this).css("display", "none");
+        // });
+
+        // $("#bubble-2").fadeOut(2000, function(){
+        //     $(this).css("display", "none");
+        // });
+
+        // $("#bubble-3").fadeOut(2000, function(){
+        //     $(this).css("display", "none");
+        // });
     // });
-
-    // $("#image-display-2").fadeOut(2000, function(){
-    //     $(this).css("display", "none");
-    // });
-
-    // $("#bubble-1").fadeOut(2000, function(){
-    //     $(this).css("display", "none");
-    // });
-
-    // $("#bubble-2").fadeOut(2000, function(){
-    //     $(this).css("display", "none");
-    // });
-
-    // $("#bubble-3").fadeOut(2000, function(){
-    //     $(this).css("display", "none");
-    // });
-// });

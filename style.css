@@ -16,7 +16,8 @@ body {
     border-radius: 42px;
 
     width: 60vw;
-    height: 715px;
+    /* height: 715px; */
+    height: 80%;
 
     margin-top: 20px;
     margin-bottom: 5%;
@@ -266,8 +267,9 @@ body {
             margin-bottom: 20px;
             margin-left: 20px;
 
-            height: 45.7vw;
-            overflow: auto;
+            /* height: 45.7vw; */
+            height: 96%;
+            overflow: scroll;
 
             border: solid #77dfff;
             border-width: 5px 5px 5px 5px;
@@ -292,6 +294,14 @@ body {
                     border-bottom: solid #77dfff;
                     border-width: 5px 5px 5px 5px;
                     font-family: 'Nosifer', cursive;
+
+                    z-index: 3;
+                }
+
+                .business {
+                    margin-top: 0;
+                    border-bottom: solid rgb(7, 0, 55);
+                    border-width: 2px 2px 2px 2px;
                 }
 
 /* page 2 map for search results */
@@ -306,7 +316,8 @@ body {
             margin-bottom: 20px;
             margin-right: 20px;
 
-            height: 45.7vw;
+            /* height: 45.7vw; */
+            height: 96%;
             overflow: hidden;
         
             border: solid #77dfff;
@@ -365,6 +376,7 @@ body {
         padding-bottom: 10px;
         background: #070037;
         /* text-align: center; */
+        z-index: 5;
     }
 
             #home-tab {
