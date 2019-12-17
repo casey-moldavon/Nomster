@@ -86,7 +86,7 @@ $("#search-button").on("click", function(event) {
     $("#bubble-2").delay(4500).fadeIn(4200);
     $("#bubble-3").delay(5000).fadeIn(4200);
 
-    getmap();
+    GetMap();
 });
 
 
