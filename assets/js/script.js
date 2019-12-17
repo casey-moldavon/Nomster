@@ -51,8 +51,10 @@ $("#search-button").on("click", function (event) {
 
     var location = $("#location").val().trim();
     var range = parseInt($("#myRange").val().trim()) * 1609.34;
-    restaraunts.retrieve({ location: location, range: range }, updateNomNomsCallback);
 
+    if (location.length != 0) {
+        restaraunts.retrieve({ location: location, range: range }, updateNomNomsCallback);
+    }
     GetMap();
 });
 
