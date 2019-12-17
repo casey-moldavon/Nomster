@@ -45,9 +45,9 @@ $("#search-button").on("click", function (event) {
     });
 
     $("#image-display-2").delay(3000).show("slide", { direction: "left" }, 1000);
-    $("#bubble-1").delay(4000).fadeIn(4200);
-    $("#bubble-2").delay(4500).fadeIn(4200);
-    $("#bubble-3").delay(5000).fadeIn(4200);
+    $("#bubble-1").delay(4500).fadeIn(1000);
+    $("#bubble-2").delay(5000).fadeIn(1000);
+    $("#bubble-3").delay(5500).fadeIn(1500);
 
     GetMap();
 });
@@ -57,12 +57,9 @@ $("#search-button").on("click", function (event) {
 
 
 
-
-
-
     // $("#home-tab").on("click", function () {
 
-    //     $("#page-2").fadeOut(2000)
+        // $("#page-2").fadeOut(2000)
         // , function(){
         // $(this).css("display", "none");
         // });
