@@ -120,13 +120,3 @@ $("#search-button").on("click", function(event) {
     //     $(this).css("display", "none");
     // });
 // });
-
-
-
-
-    // $("#home-tab").show(1000);
-    // $("#image-display-2").slideLeft(3000);
-
-    // $("#bubble-1").delay(5000).fadeIn(1000);
-    // $("#bubble-2").delay(6000).fadeIn(1000);
-    // $("#bubble-3").delay(7000).fadeIn(1000);
