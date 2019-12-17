@@ -1,72 +1,185 @@
+
 body {
     background-image: url(assets/images/background-image-4.jpg);
     background-repeat: no-repeat;
     background-size: 1500px 900px;
     background-color: #7c7c7c;
-    margin-right: 0;
+    margin-left: 0;
+    text-align: center;
 }
 
 
 .container {
-    /* background-color: #7467ad; */
     background-color: rgb(7, 0, 55);
     border: solid #dadada;
     border-width: 7px 7px 7px 7px;
     border-radius: 42px;
+
+    width: 60vw;
+    height: 715px;
+
     margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 27%;
-    margin-right: 27%;
-    padding-top: 1px;
-    padding-left: 1px;
-    padding-right: 1px;
+    margin-bottom: 5%;
+    margin-left: 18vw;
+    padding-bottom: 1.5vw;
     align-content: center;
+
+    position: absolute;
+
+    z-index: 1;
 }
 
+/* page 1 default is visibile */
+#page-1 {
+    visibility: visible;
+}
+/* page 2 default is hidden */
+#page-2 {
+    display: none;
+}
+
+        /* only present on page 1 */
         .head {
-            /* background-color: rgb(7, 0, 55); */
             background-color: #7467ad;
             border: solid #dadada;
             border-width: 5px 5px 5px 5px;
             border-radius: 42px;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            margin-left: 25px;
-            margin-right: 25px;
-            padding: 10px;
+
+            height: 10vw;
+
+            margin-top: 2.5%;
+            margin-bottom: 2.5%;
+            margin-left: 2.5%;
+            margin-right: 2.5%;
             text-align: center;
+            font-family: 'Nosifer', cursive;
         }
             #title {
                 margin: 0;
                 color: #77dfff;
-                font-size: 110px;
-                -webkit-text-stroke: 1.5px rgb(7, 0, 55);
+                font-size: 4.2vw;
+                -webkit-text-stroke: 1px rgb(7, 0, 55);
                 font-weight: bold;
                 text-align: center;
             }
             #blurb {
-                margin-top: -10px;
-                /* color: #c17ecb; */
-                color: rgb(7, 0, 55);
-                font-size: 20px;
+                margin-top: -7px;
+                color: rgb(255, 0, 42);
+                -webkit-text-stroke: .5px rgb(142, 0, 0);
+                font-size: 1.5vw;
                 font-weight: bold;
                 text-align: center;
             }
 
+    /* front page image of monster */
     #image-display {
         border-radius: 42px;
-        width: 380px;
-        Height: 380px;
-        margin-left: 22.5%;
+        width: 25vw;
+        height: 25vw;
+        margin-top: -1vw;
     }
 
-    #text-box {
-        /* border-color: black; */
+        /* angled image (of monster) */
+        /* this image default is hidden */
+        #image-display-2 {
+            position: absolute;
+            border-radius: 42px;
+            width: 25vw;
+            height: 25vw;
+            margin-top: 225px;
+            margin-left: -46.5vw;
+            /* margin-top: -25px; */
+            transform: rotate(-90deg);
+            z-index: 0;
+            display: none;
+        }
+
+        #image-display-2:hover {
+            margin-left: -50vw;
+        }
+
+
+        /* Chat bubbles should have delay after monster (image-display-2) toggles in */
+        /* each bubble will appear in order (1...2...3) */
+        /* default is hidden */
+        #bubble-1 {
+            position: absolute;
+            margin-top: 285px;
+            margin-left: 12.7vw;
+            float: left;
+
+            width: 2vw;
+            height: 2vw;
+
+            background-color: rgb(7, 0, 55);
+            border: solid #dadada;
+            border-width: 2px;
+            border-radius: 42px;
+            z-index: 1;
+            display: none;
+        }
+
+            /* default is hidden */
+            #bubble-2 {
+                position: absolute;
+                margin-top: 255px;
+                margin-left: 10.9vw;
+                float: left;
+
+                width: 3vw;
+                height: 3vw;
+
+                background-color: rgb(7, 0, 55);
+                border: solid #dadada;
+                border-width: 2px;
+                border-radius: 42px;
+                z-index: 2;
+                display: none;
+            }
+
+                /* default is hidden */
+                #bubble-3 {
+                    position: absolute;
+                    margin-top: 159px;
+                    margin-left: 4.6vw;
+                    float: left;
+
+                    width: 9vw;
+                    height: 9vw;
+
+                    background-color: rgb(7, 0, 55);
+                    border: solid #dadada;
+                    border-width: 2px;
+                    border-radius: 70px;
+                    z-index: 3;
+                    display: none;         
+                }
+
+                        /* add eventlistener("click" for image-display-2) */
+                        #nomster-text {
+                            margin-top: 3vw;
+                            color: #77dfff;
+                            /* font-size: 25px; */
+                            font-size: 1.5vw;
+                            font-weight: bold;
+                            text-align: center;   
+                        }
+
+
+
+
+
+
+
+
+    /* step 1: user input (location) */
+    #location {
         border-color: #77dfff;
         margin-top: 10px;
-        margin-left: 30%;
         padding: 12px;
     }
+
+    /* step 3: user presses search button (transitions to page 2) */
     #search-button {
         border-radius: 42px;
         border-color: #c17ecb;
@@ -74,54 +187,233 @@ body {
         margin-left: 2%;
         padding: 10px;
         background-color: rgb(7, 0, 55);
-        /* background-color: #7467ad; */
         color: #77dfff;
         font-size: 20px;
         font-weight: bold;
-        text-align: center; 
+        text-align: center;
     }
 
+            #search-button:hover {
+                background-color: #77dfff;
+                color: rgb(7, 0, 55);
+            }
 
 
-    #footer {
-        background-color: rgb(7, 0, 55);
-        /* background-color: #7467ad; */
+    /* step 2 (optional): user manipulates slide bar to customize range of search */
+
+    .slidecontainer {
         color: #77dfff;
+        font-size: 17px;
+        font-weight: bold;
+        text-align: center; 
         width: 100%;
-        margin-top: 70px;
-        margin-bottom: -1px;
-        margin-left: -1px;
-        margin-right: -1px;
+      }
 
+            #slider-text {
+                margin: 0;
+                margin-top: 25px;
+                margin-bottom: 5px;
+                padding: 0;
+            }
+
+            .slider {
+                -webkit-appearance: none;
+                width: 75%;
+                height: 10px;
+                margin: 0;
+                /* background-color: #77dfff; */
+                background-color: #c17ecb;
+                border-radius: 20px;
+
+                outline: none;
+                opacity: 0.7;
+                -webkit-transition: .2s;
+                transition: opacity .2s;
+            }
+
+            .slider:hover {
+                opacity: 1;
+            }
+
+            .slider::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                appearance: none;
+                /* border: solid #c17ecb; */
+                border: solid #77dfff;
+                border-width: 2.5px;
+                border-radius: 20px;
+                width: 25px;
+                height: 25px;
+                background: rgb(7, 0, 55);
+                cursor: pointer;
+            }
+
+
+
+
+
+
+
+/* Page 2 search results */
+        .search-results {
+            background-color: white;
+            color: rgb(7, 0, 55);
+            font-size: 20px;
+            font-weight: bold;
+
+            width: 40%;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            margin-left: 20px;
+
+            height: 45.7vw;
+            overflow: auto;
+
+            border: solid #77dfff;
+            border-width: 5px 5px 5px 5px;
+            /* border-top-left-radius: 42px;
+            border-top-right-radius: 42px; */
+            border-radius: 42px;
+
+            float: left;
+        }
+                #noms {
+                    margin-top: 0;
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    background-color: rgb(7, 0, 55);
+                    font-size: 2vw;
+                    /* -webkit-text-stroke: 1px #77dfff; */
+                    /* color: rgb(7, 0, 55); */
+                    color: rgb(255, 0, 42);
+                    -webkit-text-stroke: .5px rgb(142, 0, 0);
+                    font-weight: bold;
+
+                    border-bottom: solid #77dfff;
+                    border-width: 5px 5px 5px 5px;
+                    font-family: 'Nosifer', cursive;
+                }
+
+/* page 2 map for search results */
+        .results-map {
+            background-color: rgb(7, 0, 55);
+            color: #77dfff;
+            font-size: 20px;
+            font-weight: bold;
+        
+            width: 50%;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            margin-right: 20px;
+
+            height: 45.7vw;
+            overflow: hidden;
+        
+            border: solid #77dfff;
+            border-width: 5px 5px 5px 5px;
+            border-radius: 42px;
+
+            float: right;
+        }
+                #path {
+                    margin-top: 0;
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    background-color: rgb(7, 0, 55);
+                    font-size: 2vw;
+                    /* -webkit-text-stroke: 1px #77dfff; */
+                    /* color: rgb(7, 0, 55); */
+                    color: rgb(255, 0, 42);
+                    -webkit-text-stroke: .5px rgb(142, 0, 0);
+                    font-weight: bold;
+
+                    border-bottom: solid #77dfff;
+                    border-width: 5px 5px 5px 5px;
+                    font-family: 'Nosifer', cursive;
+                }
+
+                        /* home-tab default is display: none */
+                        /* becomes visible with page 2 */
+                        #home-tab {
+                            display: none;
+                        }
+
+
+
+
+                        #myMap {
+                            
+                            width: 100%;
+                            /* height: 630px; */
+                            height: 100%;
+
+                            margin-top: -2vw;
+
+                            /* margin-top: 20px; */
+                            /* margin-bottom: 5%; */
+                            /* margin-left: 18vw; */
+                            /* padding-bottom: 1.5vw; */
+                        }
+
+
+
+    .footer {
+        position: fixed;
+        bottom: 0;
+        min-width: 100%;
         padding-top: 10px;
-        padding-left: 2px;
         padding-bottom: 10px;
-        border-bottom-left-radius: 42px;
-        border-bottom-right-radius: 42px;
+        background: #070037;
+        /* text-align: center; */
     }
+
+            #home-tab {
+                border-radius: 42px;
+                border-color: #c17ecb;
+                margin-right: 1.5%;
+                padding: 10px;
+                background-color: rgb(7, 0, 55);
+                color: #77dfff;
+                font-size: 20px;
+                font-weight: bold;
+                text-align: center;
+            }
+
+                    #home-tab:hover {
+                        background-color: #77dfff;
+                        color: rgb(7, 0, 55);
+                    }
 
             #about-tab {
                 border-radius: 42px;
                 border-color: #c17ecb;
-                margin-left: 2.5%;
+                margin-right: 1.5%;
                 padding: 10px;
                 background-color: rgb(7, 0, 55);
-                /* background-color: #7467ad; */
                 color: #77dfff;
                 font-size: 20px;
                 font-weight: bold;
                 text-align: center;
             }
 
+                    #about-tab:hover {
+                        background-color: #77dfff;
+                        color: rgb(7, 0, 55);
+                    }
+
             #contact-tab {
                 border-radius: 42px;
                 border-color: #c17ecb;
-                margin-left: 2%;
+                margin-right: 2.5%;
                 padding: 10px;
                 background-color: rgb(7, 0, 55);
-                /* background-color: #7467ad; */
                 color: #77dfff;
                 font-size: 20px;
                 font-weight: bold;
                 text-align: center;
             }
+
+                    #contact-tab:hover {
+                        background-color: #77dfff;
+                        color: rgb(7, 0, 55);
+                    }
