@@ -144,19 +144,17 @@ class Restaraunts {
             businesses: [],
             total: 0
         };
-        this.requestRetries = 3;
-        this.requestTimeout = 2000;
 
         this.localStoreID = "nearbyRestaraunts";
-        this.callback = callback || function () { };
+        callback = callback || function () { };
 
         force = force || false;
 
         if (force || !this.load()) {
-            this.retrieve(queryObj);
+            this.retrieve(queryObj, callback);
         }
         else {
-            this.callback(this);
+            callback(this.listing.businesses);
         }
     }
 
@@ -182,11 +180,17 @@ class Restaraunts {
         localStorage.setItem(this.localStoreID, undefined);
     }
 
-    retrieve(queryObj) {
+    retrieve(queryObj, callback) {
+        var self = this;
+        var base = { term: "restaraunts", location: "160 Spear Street, San Francisco, CA", range: 1000 };
+
+        this.listing = {
+            businesses: [],
+            total: 0
+        };
         queryObj.offset = queryObj.offset || 0;
         queryObj.limit = queryObj.limit || 50;
-
-        var self = this;
+        queryObj = { ...base, ...queryObj };
 
         //queryObj.categories = cuisines.join(",");
 
@@ -199,14 +203,17 @@ class Restaraunts {
                 authorization: "Bearer ".concat(apiKey),
             }
         }).then(function (data, textStatus, jqXHR) {
+            console.log(data);
             self.listing.total = data.total;
 
             for (var i = 0; i < data.businesses.length; ++i) {
                 self.listing.businesses.push(data.businesses[i]);
             }
-            self.store();
+
             if (self.listing.businesses.length === self.listing.total) {
-                self.callback(self.listing.businesses).bind(self);
+                self.process();
+                self.store();
+                callback(self.listing.businesses).bind(self);
             }
 
             var error = function (jqXHR, textStatus, errorThrown) {
@@ -227,10 +234,11 @@ class Restaraunts {
                             for (var i = 0; i < data.businesses.length; ++i) {
                                 self.listing.businesses.push(data.businesses[i]);
                             }
-                            self.store();
+
                             if (this.retries === 0 || self.listing.businesses.length === self.listing.total) {
-                                //self.callback(self.listing.businesses).bind(self);
-                                self.callback(self.listing.businesses);
+                                self.process();
+                                self.store();
+                                callback(self.listing.businesses).bind(self);
                             }
                         },
                             function (jqXHR, textStatus, errorThrown) {
@@ -255,9 +263,10 @@ class Restaraunts {
                     for (var i = 0; i < data.businesses.length; ++i) {
                         self.listing.businesses.push(data.businesses[i]);
                     }
-                    self.store();
                     if (this.retries === 0 || self.listing.businesses.length === self.listing.total) {
-                        self.callback(self.listing.businesses).bind(self);
+                        self.process();
+                        self.store();
+                        callback(self.listing.businesses).bind(self);
                     }
                 },
                     function (jqXHR, textStatus, errorThrown) {
@@ -306,17 +315,10 @@ class Restaraunts {
     }
 }
 
-function updateNomNoms(search, callback) {
-    var base = { term: "restaraunts", location: "160 Spear Street, San Francisco, CA", range: 1000 };
-    var search = { ...base, ...search };
-    return new Restaraunts(search, callback, true);
-}
-
 function updateNomNomsCallback(businesses) {
-    this.process();
     var parent = $("<div>");
     parent.addClass("businesses");
-    for (business of this.listing.businesses) {
+    for (business of businesses) {
         var child = $("<div>");
         child.addClass("business");
         child.attr("data-lat",business.coordinates.latitude);
@@ -326,12 +328,13 @@ function updateNomNomsCallback(businesses) {
         a.attr("href", business.url);
         a.text(business.name);
         child.append(a);
-        var display_address0 = $("<p>");
-        display_address0.text(business.location.display_address[0]);
-        var display_address1 = $("<p>");
-        display_address1.text(business.location.display_address[1]);
-        child.append(display_address0);
-        child.append(display_address1);
+        var display_address = $("<p>");
+        display_address.html(
+            business.location.display_address[0].concat(
+                "&nbsp",
+                business.location.display_address[1])
+            );
+        child.append(display_address);
         var phone = $("<a>");
         phone.attr("href","tel:"+business.phone);
         phone.text(business.phone);
@@ -342,4 +345,4 @@ function updateNomNomsCallback(businesses) {
     $("#nom-list").append(parent);
 }
 
-var c = updateNomNoms({}, updateNomNomsCallback);
+restaraunts = new Restaraunts({location: "160 Spear Street, San Francisco, CA", range: 1000 }, updateNomNomsCallback);

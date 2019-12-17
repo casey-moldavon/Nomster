@@ -49,9 +49,12 @@ $("#search-button").on("click", function (event) {
     $("#bubble-2").delay(5000).fadeIn(1000);
     $("#bubble-3").delay(5500).fadeIn(1500);
 
+    var location = $("#location").val().trim();
+    var range = parseInt($("#myRange").val().trim()) * 1609.34;
+    restaraunts.retrieve({ location: location, range: range }, updateNomNomsCallback);
+
     GetMap();
 });
-
 
     // idea: monster pops up over page while content loats and then disappears
 
