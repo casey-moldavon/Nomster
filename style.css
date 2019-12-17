@@ -30,12 +30,12 @@ body {
 }
 
 /* page 1 default is visibile */
-#page-2 {
+#page-1 {
     visibility: visible;
 }
 /* page 2 default is hidden */
-#page-1 {
-    visibility: hidden;
+#page-2 {
+    display: none;
 }
 
         /* only present on page 1 */
@@ -91,7 +91,7 @@ body {
             /* margin-top: -25px; */
             transform: rotate(-90deg);
             z-index: 0;
-            visibility: hidden;
+            display: none;
         }
 
         #image-display-2:hover {
@@ -116,7 +116,7 @@ body {
             border-width: 2px;
             border-radius: 42px;
             z-index: 1;
-            visibility: hidden;
+            display: none;
         }
 
             /* default is hidden */
@@ -134,7 +134,7 @@ body {
                 border-width: 2px;
                 border-radius: 42px;
                 z-index: 2;
-                visibility: hidden;
+                display: none;
             }
 
                 /* default is hidden */
@@ -152,7 +152,7 @@ body {
                     border-width: 2px;
                     border-radius: 70px;
                     z-index: 3;
-                    visibility: hidden;         
+                    display: none;         
                 }
 
                         /* add eventlistener("click" for image-display-2) */
@@ -307,7 +307,7 @@ body {
             margin-right: 20px;
 
             height: 45.7vw;
-            overflow: auto;
+            overflow: hidden;
         
             border: solid #77dfff;
             border-width: 5px 5px 5px 5px;
@@ -336,6 +336,23 @@ body {
                         /* becomes visible with page 2 */
                         #home-tab {
                             display: none;
+                        }
+
+
+
+
+                        #myMap {
+                            
+                            width: 100%;
+                            /* height: 630px; */
+                            height: 100%;
+
+                            margin-top: -2vw;
+
+                            /* margin-top: 20px; */
+                            /* margin-bottom: 5%; */
+                            /* margin-left: 18vw; */
+                            /* padding-bottom: 1.5vw; */
                         }
 
 
