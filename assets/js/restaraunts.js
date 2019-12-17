@@ -284,7 +284,7 @@ class Restaraunts {
                     break;
                 }
             }
-            /* code to check the content of the categoriries for discarded content 
+            /* code to check the content of the categories for discarded content 
             if (j === business.categories.length) {
                 console.log("INDEX: " + i);
                 for (var j = 0; j < business.categories.length; ++j) {
@@ -332,7 +332,8 @@ function updateNomNomsCallback(businesses) {
         display_address1.text(business.location.display_address[1]);
         child.append(display_address0);
         child.append(display_address1);
-        var phone = $("<p>");
+        var phone = $("<a>");
+        phone.attr("href","tel:"+business.phone);
         phone.text(business.phone);
         child.append(phone);
         parent.append(child);
