@@ -32,25 +32,25 @@ setTimeout(function () {
 
 
 // ========================= Design animations/displays + page shifts =========================
-$(document).ready(function () {
-    $("#search-button").on("click", function (event) {
-        event.preventDefault();
 
-        $("#page-2").fadeIn(3000, function () {
-            $(this).css("visibility", "visible");
-        });
+$("#search-button").on("click", function (event) {
+    event.preventDefault();
 
-        $("#home-tab").fadeIn(3000, function () {
-            $(this).css("visibility", "visible");
-        });
-
-        $("#image-display-2").delay(3000).show("slide", { direction: "left" }, 1000);
-        $("#bubble-1").delay(4000).fadeIn(4200);
-        $("#bubble-2").delay(4500).fadeIn(4200);
-        $("#bubble-3").delay(5000).fadeIn(4200);
-
-        getmap();
+    $("#page-2").fadeIn(3000, function () {
+        $(this).css("visibility", "visible");
     });
+
+    $("#home-tab").fadeIn(3000, function () {
+        $(this).css("visibility", "visible");
+    });
+
+    $("#image-display-2").delay(3000).show("slide", { direction: "left" }, 1000);
+    $("#bubble-1").delay(4000).fadeIn(4200);
+    $("#bubble-2").delay(4500).fadeIn(4200);
+    $("#bubble-3").delay(5000).fadeIn(4200);
+
+    GetMap();
+});
 
 
     // idea: monster pops up over page while content loats and then disappears
@@ -60,9 +60,9 @@ $(document).ready(function () {
 
 
 
-    $("#home-tab").on("click", function () {
+    // $("#home-tab").on("click", function () {
 
-        $("#page-2").fadeOut(2000)
+    //     $("#page-2").fadeOut(2000)
         // , function(){
         // $(this).css("display", "none");
         // });
@@ -86,5 +86,4 @@ $(document).ready(function () {
         // $("#bubble-3").fadeOut(2000, function(){
         //     $(this).css("display", "none");
         // });
-    });
-});
+    // });

@@ -129,22 +129,6 @@ jQuery.ajaxPrefilter(function (options) {
     }
 });
 
-/*
- * @param{Object} obj {
-        pins: [ {
-                 latitude
-                 longitude
-                 label
-             },... ]
-            }
-*/
-function getMap() {
-    var map = new Microsoft.Maps.Map("#map",
-        {
-            credentials: "ArfOhekfSK9rly4qjcdt20SypfRiLnIYtUbxAzrv6-PDjseOmmMguOsqBYcrD-sW",
-        });
-}
-
 /**
  * @param{Object} obj {
  *  location
@@ -245,7 +229,8 @@ class Restaraunts {
                             }
                             self.store();
                             if (this.retries === 0 || self.listing.businesses.length === self.listing.total) {
-                                self.callback(self.listing.businesses).bind(self);
+                                //self.callback(self.listing.businesses).bind(self);
+                                self.callback(self.listing.businesses);
                             }
                         },
                             function (jqXHR, textStatus, errorThrown) {

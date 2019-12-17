@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,39 +9,38 @@
 
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Nosifer&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
 </head>
 
 
 <!-- display's map on load -->
+
 <body>
 
     <!-- ========== First Page ========== -->
     <div id="page-1" class="container">
 
-            <div class="head">
-                <h1 id="title">Nomster</h1>
-                <h4 id="blurb">Off the eaten path</h4>
-            </div>
+        <div class="head">
+            <h1 id="title">Nomster</h1>
+            <h4 id="blurb">Off the eaten path</h4>
+        </div>
 
 
-            <div class="search-container">
-                <img src="assets/images/monster-1.png" id="image-display">
-                <form class="yelp">
-                    <input placeholder="location" id="location" type="text">
-                    <input id="search-button" type="submit">
-                </form>
+        <div class="search-container">
+            <img src="assets/images/monster-1.png" id="image-display">
+            <form class="yelp">
+                <input placeholder="location" id="location" type="text">
+                <input id="search-button" type="submit">
+            </form>
 
 
-                <div class="slidecontainer">
-                    <p id="slider-text" >Range of Search:
+            <div class="slidecontainer">
+                <p id="slider-text">Range of Search:
                     <output name="slider-output" id="myOutput">5</output> Miles</p>
 
-                    <input type="range" min="1" max="25" value="5" class="slider" id="myRange"
+                <input type="range" min="1" max="25" value="5" class="slider" id="myRange"
                     oninput="myOutput.value = myRange.value">
-                </div>
             </div>
+        </div>
     </div>
 
     <!-- ========== Second Page ========== -->
@@ -49,18 +49,18 @@
         <!-- This search-results div will have other generated search divs appended to it to display search results -->
         <div class="search-results">
             <h3 id="noms">Nom Noms</h3>
-                <div id="nom-list">
+            <div id="nom-list">
                 <!-- generated divs will/should append here -->
-                </div>
+            </div>
         </div>
 
         <!-- This results-mapdiv will house the generated map once an option is selected from the search-results div list -->
         <div class="results-map">
             <h3 id="path">Path to Nom Noms</h3>
 
-                <!-- map adds here -->
-                <!-- <div id="myMap" style="position:relative;width:300px;height:560px;"></div> -->
-                <div id="myMap"></div>
+            <!-- map adds here -->
+            <!-- <div id="myMap" style="position:relative;width:300px;height:560px;"></div> -->
+            <div id="myMap"></div>
 
         </div>
     </div>
@@ -68,22 +68,29 @@
     <!-- angled monster page 2 -->
     <img src="assets/images/monster-1.png" id="image-display-2">
 
-        <div class="container-bubble" id="bubble-1"></div>
-            <div class="container-bubble" id="bubble-2"></div>
-                <div class="container-bubble" id="bubble-3"><p id="nomster-text">Click Me to go back</p></div>
-                <!-- "refresh page to Search again" -->
+
+    <div class="container-bubble" id="bubble-1"></div>
+    <div class="container-bubble" id="bubble-2"></div>
+    <div class="container-bubble" id="bubble-3">
+        <p id="nomster-text">Click Me to go back</p>
+    </div>
 
     <div class="footer">
-            <!-- tab to return to home screen (resets app) -->
-            <button class="button" id="home-tab">Home</button>
-            <button class="button" id="about-tab">About Us</button>
-            <button class="button" id="contact-tab">Contact Us</button>
-    </div>
-    
+        <!-- tab to return to home screen (resets app) -->
+        <button class="button" id="home-tab">Home</button>
 
-<script src="script.js"></script>
-<script src="restaraunts.js"></script>
-<script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
+        <button class="button" id="about-tab">About Us</button>
+        <button class="button" id="contact-tab">Contact Us</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- bing seems to require ui if jquery is present -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
+    <script src="script.js"></script>
+    <script src="restaraunts.js"></script>
 
 </body>
+
 </html>
