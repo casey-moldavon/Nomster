@@ -204,7 +204,6 @@ class Restaraunts {
                 authorization: "Bearer ".concat(apiKey),
             }
         }).then(function (data, textStatus, jqXHR) {
-            console.log(data);
             self.listing.total = data.total;
 
             for (var i = 0; i < data.businesses.length; ++i) {
@@ -212,9 +211,10 @@ class Restaraunts {
             }
 
             if (self.listing.businesses.length === self.listing.total) {
+                self.listing.position = data.region.center;
                 self.process();
                 self.store();
-                callback(self.listing.businesses).bind(self);
+                callback(self.listing).bind(self);
             }
 
             var error = function (jqXHR, textStatus, errorThrown) {
@@ -237,9 +237,10 @@ class Restaraunts {
                             }
 
                             if (this.retries === 0 || self.listing.businesses.length === self.listing.total) {
+                                self.listing.position = data.region.center;
                                 self.process();
                                 self.store();
-                                callback(self.listing.businesses).bind(self);
+                                callback(self.listing).bind(self);
                             }
                         },
                             function (jqXHR, textStatus, errorThrown) {
@@ -265,9 +266,10 @@ class Restaraunts {
                         self.listing.businesses.push(data.businesses[i]);
                     }
                     if (this.retries === 0 || self.listing.businesses.length === self.listing.total) {
+                        self.listing.position = data.region.center;
                         self.process();
                         self.store();
-                        callback(self.listing.businesses).bind(self);
+                        callback(self.listing).bind(self);
                     }
                 },
                     function (jqXHR, textStatus, errorThrown) {
@@ -316,10 +318,10 @@ class Restaraunts {
     }
 }
 
-function updateNomNomsCallback(businesses) {
+function updateNomNomsCallback(listing) {
     var parent = $("<div>");
     parent.addClass("businesses");
-    for (business of businesses) {
+    for (business of listing.businesses) {
         var child = $("<div>");
         child.addClass("business");
         child.attr("data-lat",business.coordinates.latitude);

@@ -7,43 +7,54 @@ function GetMap(objQuery) {
     var map = new Microsoft.Maps.Map('#myMap', {
         credentials: "ArfOhekfSK9rly4qjcdt20SypfRiLnIYtUbxAzrv6-PDjseOmmMguOsqBYcrD-sW"
     });
-    //Request the user's location
-    navigator.geolocation.getCurrentPosition(function (position) {
-        var loc = new Microsoft.Maps.Location(
-            position.coords.latitude,
-            position.coords.longitude);
-        userLat = position.coords.latitude;
-        userLong = position.coords.longitude;
-        userLocationGlobal = loc;
-        //Add a pushpin at the user's location.
-        var pin = new Microsoft.Maps.Pushpin(loc);
-        map.entities.push(pin);
-        //Center the map on the user's location.
-        map.setView({ center: loc, zoom: 15 });
+ 
+    /* if not location was present in the objQuery object then */
+    if (!("location" in objQuery)) {
+        /* get current position from the navigator */
+        navigator.geolocation.getCurrentPosition(function (position) {
+            var loc = new Microsoft.Maps.Location(
+                position.coords.latitude,
+                position.coords.longitude);
+            userLat = position.coords.latitude;
+            userLong = position.coords.longitude;
+            userLocationGlobal = loc;
+            //Add a pushpin at the user's location.
+            var pin = new Microsoft.Maps.Pushpin(loc);
+            map.entities.push(pin);
+            //Center the map on the user's location.
+            map.setView({ center: loc, zoom: 15 });
 
-        // Handler is called when the page is loaded AND when this fn is called.
-        if (objQuery) {
-            console.log("LOADED");
-            if (!("location" in objQuery)) {
-                objQuery.latitude = position.coords.latitude;
-                objQuery.longitude = position.coords.longitude;
-            }
+            // set properaties in the yelp query to facilitate a call by lat,lon
+            objQuery.latitude = position.coords.latitude;
+            objQuery.longitude = position.coords.longitude;
+
             restaraunts.retrieve(objQuery, updateNomNomsCallback, true);
-        }
-        else {
-            console.log("ONLOAD?");
-        }
-                
-    });
+        });
+    }
+    else {
+        restaraunts.retrieve(
+            objQuery, 
+            function(listing) {
+                // create a new location using yelp position
+                var loc = new Microsoft.Maps.Location(
+                    listing.position.latitude,
+                    listing.position.longitude);
+
+                // create a pin
+                var pin = new Microsoft.Maps.Pushpin(loc);
+
+                // apply the pin
+                map.entities.push(pin);
+
+                // set the view for the map
+                map.setView({ center: loc, zoom: 15 });
+        
+                // call callback for updating nomnoms section of web page
+                updateNomNomsCallback(listing); 
+            },
+            true);
+    }
 }
-setTimeout(function () {
-    console.log(userLong);
-    console.log(userLat);
-}, 10000);
-
-
-
-
 
 // ========================= Design animations/displays + page shifts =========================
 
