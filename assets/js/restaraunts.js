@@ -146,16 +146,6 @@ class Restaraunts {
         };
 
         this.localStoreID = "nearbyRestaraunts";
-        callback = callback || function () { };
-
-        force = force || false;
-
-        if (force || !this.load()) {
-            this.retrieve(queryObj, callback);
-        }
-        else {
-            callback(this.listing.businesses);
-        }
     }
 
     load() {
@@ -180,14 +170,25 @@ class Restaraunts {
         localStorage.setItem(this.localStoreID, undefined);
     }
 
-    retrieve(queryObj, callback) {
+    retrieve(queryObj, callback, force) {
         var self = this;
         var base = { term: "restaraunts", location: "160 Spear Street, San Francisco, CA", range: 1000 };
 
+        callback = callback || function () { };
+        force = force || false;
+
+        /* if no force flag and there is content in the localStorage */
+        if (!force && this.load()) {
+            callback(this.listing.businesses);
+            return;
+        }
+
+        /* reset the contents of the object before re-acquiring business data */
         this.listing = {
             businesses: [],
             total: 0
         };
+
         queryObj.offset = queryObj.offset || 0;
         queryObj.limit = queryObj.limit || 50;
         queryObj = { ...base, ...queryObj };
@@ -345,4 +346,4 @@ function updateNomNomsCallback(businesses) {
     $("#nom-list").append(parent);
 }
 
-restaraunts = new Restaraunts({location: "160 Spear Street, San Francisco, CA", range: 1000 }, updateNomNomsCallback);
+restaraunts = new Restaraunts();

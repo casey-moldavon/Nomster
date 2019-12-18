@@ -3,7 +3,7 @@
 var userLat = "";
 var userLong = "";
 var userLocationGlobal = "";
-function GetMap() {
+function GetMap(objQuery) {
     var map = new Microsoft.Maps.Map('#myMap', {
         credentials: "ArfOhekfSK9rly4qjcdt20SypfRiLnIYtUbxAzrv6-PDjseOmmMguOsqBYcrD-sW"
     });
@@ -20,6 +20,20 @@ function GetMap() {
         map.entities.push(pin);
         //Center the map on the user's location.
         map.setView({ center: loc, zoom: 15 });
+
+        // Handler is called when the page is loaded AND when this fn is called.
+        if (objQuery) {
+            console.log("LOADED");
+            if (!("location" in objQuery)) {
+                objQuery.latitude = position.coords.latitude;
+                objQuery.longitude = position.coords.longitude;
+            }
+            restaraunts.retrieve(objQuery, updateNomNomsCallback, true);
+        }
+        else {
+            console.log("ONLOAD?");
+        }
+                
     });
 }
 setTimeout(function () {
@@ -49,13 +63,15 @@ $("#search-button").on("click", function (event) {
     $("#bubble-2").delay(5000).fadeIn(1000);
     $("#bubble-3").delay(5500).fadeIn(1500);
 
-    var location = $("#location").val().trim();
-    var range = parseInt($("#myRange").val().trim()) * 1609.34;
+    var objQuery = {};
+    objQuery.range = Math.round(parseInt($("#myRange").val().trim()) * 1609.34);
 
+    var location = $("#location").val().trim();
     if (location.length != 0) {
-        restaraunts.retrieve({ location: location, range: range }, updateNomNomsCallback);
+        objQuery.location = location;
     }
-    GetMap();
+
+    GetMap(objQuery);
 });
 
     // idea: monster pops up over page while content loats and then disappears
