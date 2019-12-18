@@ -87,7 +87,32 @@ $("#search-button").on("click", function (event) {
 
     // idea: monster pops up over page while content loats and then disappears
 
+$("#home-tab").click(function() {
+    event.preventDefault();
 
+    for (el of [ $("#page-2"), $("#home-tab") ]) {
+        el.css('visibility',"");
+    }
+
+    for (el of [ $("#image-display"), $("#bubble-1"), $("#bubble-2"), $("#bubble-3")]) {
+        el.css("display","none");
+    }
+
+    $("#page-1").css("z-index",2);
+});
+
+$("#bubble-3").click(function() {
+    event.preventDefault();
+
+    for (el of [ $("#page-2"), $("#home-tab") ]) {
+        el.css('visibility',"");
+    }
+
+    for (el of [ $("#image-display"), $("#bubble-1"), $("#bubble-2"), $("#bubble-3")]) {
+        el.css("display","none");
+    }
+    $("#page-1").css("z-index",2);
+});
 
     // $("#home-tab").on("click", function () {
 
