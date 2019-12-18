@@ -4,14 +4,14 @@ body {
     background-image: url(../images/background-image-4.jpg);
     background-repeat: no-repeat;
     background-size: 1500px 900px;
-    background-color: #7c7c7c;
+    background-color: #7467ad;
     margin-left: 0;
     text-align: center;
 }
 
         /* this is the primary container for nearly all content with exception to the footer and image-2 */
         .container {
-            background-color: rgb(7, 0, 55);
+            background-color: #070037;
             border: solid #dadada;
             border-width: 7px 7px 7px 7px;
             border-radius: 42px;
@@ -31,6 +31,7 @@ body {
             z-index: 1;
         }
 
+
                 /* page 1 default is visibile */
                 #page-1 {
                     visibility: visible;
@@ -39,6 +40,7 @@ body {
                 #page-2 {
                     display: none;
                 }
+
 
                 /* this is the display of the front page before user clicks submit */
                 /* only present on page 1 */
@@ -78,6 +80,7 @@ body {
                         text-align: center;
                     }
 
+
             /* front page image */
             /* front page image of monster */
             #image-display {
@@ -104,6 +107,7 @@ body {
                     z-index: 0;
                     display: none;
                 }
+
 
                         /* image that appears on page 2 (not attached to any other element on the page) */
                         #image-display-2:hover {
@@ -204,8 +208,8 @@ body {
                         color: rgb(7, 0, 55);
                     }
 
-            /* step 2 (optional): user manipulates slide bar to customize range of search */
-
+                    
+            /* this section contains the slide bar in which the user can alter the range of their search */
             .slidecontainer {
                 color: #77dfff;
                 font-size: 17px;
@@ -236,9 +240,9 @@ body {
                         transition: opacity .2s;
                     }
 
-                    .slider:hover {
-                        opacity: 1;
-                    }
+                            .slider:hover {
+                                opacity: 1;
+                            }
 
                     .slider::-webkit-slider-thumb {
                         -webkit-appearance: none;
@@ -282,6 +286,7 @@ body {
 
                     float: left;
                 }
+
                         #noms {
                             margin-top: 0;
                             margin-bottom: 0;
@@ -299,7 +304,6 @@ body {
                             /* border: solid #77dfff; */
                             border-width: 5px 5px 5px 5px;
                             font-family: 'Nosifer', cursive;
-
                         }
 
                                 /* this div houses the individual business divs that the list generates */
@@ -330,7 +334,6 @@ body {
                                                     padding: 5px;
                                                     background-color: rgb(7, 0, 55);
                                                     border-radius: 42px;
-
                                                     position: absolute;
                                                     margin-bottom: 25px;
                                                 }
@@ -343,7 +346,6 @@ body {
                                                 .search-results::-webkit-scrollbar-thumb {
                                                     border: 5px solid #77dfff;
                                                     border-radius: 42px;
-
                                                     height: 25px;
                                                     width: 25px;
                                                     /* box-shadow: inset 0 0 6px rgb(255, 0, 0); */
@@ -377,6 +379,7 @@ body {
 
                     float: right;
                 }
+
                         #path {
                             margin-top: 0;
                             padding-top: 10px;
@@ -401,7 +404,6 @@ body {
                                 }
 
                                 #myMap {
-                                    
                                     width: 100%;
                                     /* height: 630px; */
                                     height: 100%;
@@ -413,7 +415,6 @@ body {
                                     /* margin-left: 18vw; */
                                     /* padding-bottom: 1.5vw; */
                                 }
-
 
 
             .footer {
