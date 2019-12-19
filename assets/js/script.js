@@ -87,15 +87,62 @@ $("#search-button").on("click", function (event) {
     GetMap(objQuery);
 });
 
+// ========================= Design animations/displays back to page 1 =========================
 
-$("#home-tab, #image-display-2").on("click", function (event) {
+$("#home-tab").on("click", function (event) {
     event.preventDefault();
 
-    for (el of [$("#hpage-2"), $("#home-tab"), $("#image-display-2"), $("#bubble-1"), $("#bubble-2"), $("#bubble-3")]) {
-        el.fadeOut(2000, function () {
-            $(this).css("display", "none");
-        });
-    }
+    $("#page-2").fadeOut(2000, function(){
+    $(this).css("display", "none");
+    });
 
-    $("#page-2").delay(2000).css("z-index", "0");
+    $("#home-tab").fadeOut(2000, function(){
+        $(this).css("display", "none");
+    });
+
+    $("#image-display-2").fadeOut(2000, function(){
+        $(this).css("display", "none");
+    });
+
+    $("#bubble-1").fadeOut(2000, function(){
+        $(this).css("display", "none");
+    });
+
+    $("#bubble-2").fadeOut(2000, function(){
+        $(this).css("display", "none");
+    });
+
+    $("#bubble-3").fadeOut(2000, function(){
+        $(this).css("display", "none");
+    });
+});
+
+
+
+$("#image-display-2").on("click", function (event) {
+    event.preventDefault();
+
+    $("#page-2").fadeOut(2000, function(){
+    $(this).css("display", "none");
+    });
+
+    $("#home-tab").fadeOut(2000, function(){
+        $(this).css("display", "none");
+    });
+
+    $("#image-display-2").fadeOut(2000, function(){
+        $(this).css("display", "none");
+    });
+
+    $("#bubble-1").fadeOut(2000, function(){
+        $(this).css("display", "none");
+    });
+
+    $("#bubble-2").fadeOut(2000, function(){
+        $(this).css("display", "none");
+    });
+
+    $("#bubble-3").fadeOut(2000, function(){
+        $(this).css("display", "none");
+    });
 });
