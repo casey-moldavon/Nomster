@@ -7,7 +7,7 @@ function GetMap(objQuery) {
     var map = new Microsoft.Maps.Map('#myMap', {
         credentials: "ArfOhekfSK9rly4qjcdt20SypfRiLnIYtUbxAzrv6-PDjseOmmMguOsqBYcrD-sW"
     });
- 
+
     /* if not location was present in the objQuery object then */
     if (!("location" in objQuery)) {
         /* get current position from the navigator */
@@ -33,8 +33,8 @@ function GetMap(objQuery) {
     }
     else {
         restaraunts.retrieve(
-            objQuery, 
-            function(listing) {
+            objQuery,
+            function (listing) {
                 // create a new location using yelp position
                 var loc = new Microsoft.Maps.Location(
                     listing.position.latitude,
@@ -48,9 +48,9 @@ function GetMap(objQuery) {
 
                 // set the view for the map
                 map.setView({ center: loc, zoom: 15 });
-        
+
                 // call callback for updating nomnoms section of web page
-                updateNomNomsCallback(listing); 
+                updateNomNomsCallback(listing);
             },
             true);
     }
@@ -74,7 +74,7 @@ $("#search-button").on("click", function (event) {
     $("#bubble-2").delay(5000).fadeIn(1000);
     $("#bubble-3").delay(5500).fadeIn(1500);
 
-
+    $("#page-2").css("z-index", "2");
 
     var objQuery = {};
     objQuery.range = Math.round(parseInt($("#myRange").val().trim()) * 1609.34);
@@ -88,62 +88,14 @@ $("#search-button").on("click", function (event) {
 });
 
 
-// ========================= Design animations/displays back to page 1 =========================
+$("#home-tab, #image-display-2").on("click", function (event) {
+    event.preventDefault();
 
-    $("#home-tab").on("click", function (event) {
-        event.preventDefault();
-
-        $("#page-2").fadeOut(2000, function(){
-        $(this).css("display", "none");
-        });
-
-        $("#home-tab").fadeOut(2000, function(){
+    for (el of [$("#hpage-2"), $("#home-tab"), $("#image-display-2"), $("#bubble-1"), $("#bubble-2"), $("#bubble-3")]) {
+        el.fadeOut(2000, function () {
             $(this).css("display", "none");
         });
+    }
 
-        $("#image-display-2").fadeOut(2000, function(){
-            $(this).css("display", "none");
-        });
-
-        $("#bubble-1").fadeOut(2000, function(){
-            $(this).css("display", "none");
-        });
-
-        $("#bubble-2").fadeOut(2000, function(){
-            $(this).css("display", "none");
-        });
-
-        $("#bubble-3").fadeOut(2000, function(){
-            $(this).css("display", "none");
-        });
-    });
-
-
-
-    $("#image-display-2").on("click", function (event) {
-        event.preventDefault();
-
-        $("#page-2").fadeOut(2000, function(){
-        $(this).css("display", "none");
-        });
-
-        $("#home-tab").fadeOut(2000, function(){
-            $(this).css("display", "none");
-        });
-
-        $("#image-display-2").fadeOut(2000, function(){
-            $(this).css("display", "none");
-        });
-
-        $("#bubble-1").fadeOut(2000, function(){
-            $(this).css("display", "none");
-        });
-
-        $("#bubble-2").fadeOut(2000, function(){
-            $(this).css("display", "none");
-        });
-
-        $("#bubble-3").fadeOut(2000, function(){
-            $(this).css("display", "none");
-        });
-    });
+    $("#page-2").delay(2000).css("z-index", "0");
+});
