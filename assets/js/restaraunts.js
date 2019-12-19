@@ -104,11 +104,13 @@ var lcAPIKey = "WUfWoOVmAoVzU0GZeM50mAJstQPhp1eYDImVEA6S6n79IQ09MrCj-3f1q0T9pmdW
 
 var apiKey = msnAPIKey;
 
+/*
 jQuery.ajaxPrefilter(function (options) {
     if (options.crossDomain && jQuery.support.cors) {
         options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
     }
 });
+*/
 
 /**
  * @param{Object} obj {
@@ -184,7 +186,7 @@ class Restaraunts {
             queryObj.categories = cuisines.join(",");
             var query = Object.entries(queryObj).map(a => a[0].concat("=", a[1])).join("&");
             return {
-                url: 'https://api.yelp.com/v3/businesses/search?' + query,
+                url: 'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?' + query,
                 method: "GET",
                 headers: {
                     authorization: "Bearer ".concat(apiKey),

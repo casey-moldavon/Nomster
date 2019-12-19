@@ -28,7 +28,18 @@ function GetMap(objQuery) {
             objQuery.latitude = position.coords.latitude;
             objQuery.longitude = position.coords.longitude;
 
-            restaraunts.retrieve(objQuery, updateNomNomsCallback, true);
+            restaraunts.retrieve(objQuery, function(listing) {
+                for (business of listing.businesses) {
+                    let lat = business.coordinates.latitude;
+                    let lon = business.coordinates.longitude;
+
+                    let loc = new Microsoft.Maps.Location(lat, lon);
+                    let pin = new Microsoft.Maps.Pushpin(loc);
+                    map.entities.push(pin);
+                }
+
+                updateNomNomsCallback(listing);
+            }, true);
         });
     }
     else {
@@ -39,12 +50,18 @@ function GetMap(objQuery) {
                 var loc = new Microsoft.Maps.Location(
                     listing.position.latitude,
                     listing.position.longitude);
-
                 // create a pin
                 var pin = new Microsoft.Maps.Pushpin(loc);
-
-                // apply the pin
                 map.entities.push(pin);
+
+                for (business of listing.businesses) {
+                    let lat = business.coordinates.latitude;
+                    let lon = business.coordinates.longitude;
+
+                    let loc = new Microsoft.Maps.Location(lat, lon);
+                    let pin = new Microsoft.Maps.Pushpin(loc);
+                    map.entities.push(pin);
+                }
 
                 // set the view for the map
                 map.setView({ center: loc, zoom: 15 });
@@ -92,27 +109,27 @@ $("#search-button").on("click", function (event) {
 $("#home-tab").on("click", function (event) {
     event.preventDefault();
 
-    $("#page-2").fadeOut(2000, function(){
-    $(this).css("display", "none");
-    });
-
-    $("#home-tab").fadeOut(2000, function(){
+    $("#page-2").fadeOut(2000, function () {
         $(this).css("display", "none");
     });
 
-    $("#image-display-2").fadeOut(2000, function(){
+    $("#home-tab").fadeOut(2000, function () {
         $(this).css("display", "none");
     });
 
-    $("#bubble-1").fadeOut(2000, function(){
+    $("#image-display-2").fadeOut(2000, function () {
         $(this).css("display", "none");
     });
 
-    $("#bubble-2").fadeOut(2000, function(){
+    $("#bubble-1").fadeOut(2000, function () {
         $(this).css("display", "none");
     });
 
-    $("#bubble-3").fadeOut(2000, function(){
+    $("#bubble-2").fadeOut(2000, function () {
+        $(this).css("display", "none");
+    });
+
+    $("#bubble-3").fadeOut(2000, function () {
         $(this).css("display", "none");
     });
 });
@@ -122,27 +139,27 @@ $("#home-tab").on("click", function (event) {
 $("#image-display-2").on("click", function (event) {
     event.preventDefault();
 
-    $("#page-2").fadeOut(2000, function(){
-    $(this).css("display", "none");
-    });
-
-    $("#home-tab").fadeOut(2000, function(){
+    $("#page-2").fadeOut(2000, function () {
         $(this).css("display", "none");
     });
 
-    $("#image-display-2").fadeOut(2000, function(){
+    $("#home-tab").fadeOut(2000, function () {
         $(this).css("display", "none");
     });
 
-    $("#bubble-1").fadeOut(2000, function(){
+    $("#image-display-2").fadeOut(2000, function () {
         $(this).css("display", "none");
     });
 
-    $("#bubble-2").fadeOut(2000, function(){
+    $("#bubble-1").fadeOut(2000, function () {
         $(this).css("display", "none");
     });
 
-    $("#bubble-3").fadeOut(2000, function(){
+    $("#bubble-2").fadeOut(2000, function () {
+        $(this).css("display", "none");
+    });
+
+    $("#bubble-3").fadeOut(2000, function () {
         $(this).css("display", "none");
     });
 });
