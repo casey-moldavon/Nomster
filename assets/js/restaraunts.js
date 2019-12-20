@@ -129,6 +129,22 @@ jQuery.ajaxPrefilter(function (options) {
     }
 });
 
+/*
+ * @param{Object} obj {
+        pins: [ {
+                 latitude
+                 longitude
+                 label
+             },... ]
+            }
+*/
+function getMap() {
+    var map = new Microsoft.Maps.Map("#map",
+        {
+            credentials: "ArfOhekfSK9rly4qjcdt20SypfRiLnIYtUbxAzrv6-PDjseOmmMguOsqBYcrD-sW",
+        });
+}
+
 /**
  * @param{Object} obj {
  *  location
