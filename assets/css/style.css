@@ -17,7 +17,7 @@ body {
             border-radius: 42px;
 
             width: 60vw;
-            /* height: 715px; */
+            /* height: 750px; */
             height: 82%;
 
             margin-top: 20px;
@@ -58,6 +58,9 @@ body {
                     margin-right: 2.5%;
                     text-align: center;
                     font-family: 'Nosifer', cursive;
+
+                    min-width: 250px;
+                    min-height: 100px;
                 }
 
                     /* app title "Nomster" */
@@ -65,17 +68,20 @@ body {
                         margin: 0;
                         color: #77dfff;
                         font-size: 4.2vw;
+                        font-size: 4.5vmax;
                         -webkit-text-stroke: 1px rgb(7, 0, 55);
                         font-weight: bold;
                         text-align: center;
+                        
                     }
 
                     /* small comment below "Nomster" */
                     #blurb {
-                        margin-top: -7px;
+                        margin-top: -1vw;
                         color: rgb(255, 0, 42);
                         -webkit-text-stroke: .5px rgb(142, 0, 0);
                         font-size: 1.5vw;
+                        font-size: 1.6vmax;
                         font-weight: bold;
                         text-align: center;
                     }
@@ -83,6 +89,7 @@ body {
 
             /* front page image */
             /* front page image of monster */
+            @media only screen and (min-width: 200px) {
             #image-display {
                 border-radius: 42px;
                 /* width: 25vw; */
@@ -91,7 +98,14 @@ body {
 
                 width: 42%;
                 height: 42%;
+
+                /* width: 350px;
+                height: 350px; */
+                min-width: 300px;
+                min-height: 300px;
             }
+            }
+
 
                 /* angled image (of monster) */
                 /* this image default is hidden */
@@ -121,11 +135,16 @@ body {
                 #bubble-1 {
                     position: absolute;
                     margin-top: 285px;
-                    margin-left: 12.7vw;
+                    margin-left: 197px;
+
+                    /* margin-left: 12.7vw; */
                     float: left;
 
-                    width: 2vw;
-                    height: 2vw;
+                    /* width: 2vw; */
+                    /* height: 2vw; */
+
+                    width: 30px;
+                    height: 30px;
 
                     background-color: rgb(7, 0, 55);
                     border: solid #dadada;
@@ -138,12 +157,15 @@ body {
                     /* default is hidden */
                     #bubble-2 {
                         position: absolute;
-                        margin-top: 255px;
-                        margin-left: 10.9vw;
+                        margin-top: 253px;
+                        margin-left: 11.2vw;
                         float: left;
 
-                        width: 3vw;
-                        height: 3vw;
+                        /* width: 3vw; */
+                        /* height: 3vw; */
+
+                        width: 50px;
+                        height: 50px;
 
                         background-color: rgb(7, 0, 55);
                         border: solid #dadada;
@@ -157,11 +179,14 @@ body {
                         #bubble-3 {
                             position: absolute;
                             margin-top: 159px;
-                            margin-left: 4.6vw;
+                            margin-left: 4.8vw;
                             float: left;
 
-                            width: 9vw;
-                            height: 9vw;
+                            /* width: 9vw; */
+                            /* height: 9vw; */
+
+                            width: 137px;
+                            height: 137px;
 
                             background-color: rgb(7, 0, 55);
                             border: solid #dadada;
@@ -176,7 +201,7 @@ body {
                                     margin-top: 3vw;
                                     color: #77dfff;
                                     /* font-size: 25px; */
-                                    font-size: 1.5vw;
+                                    font-size: 1.6vw;
                                     font-weight: bold;
                                     text-align: center;   
                                 }
@@ -478,3 +503,57 @@ body {
                                 background-color: #77dfff;
                                 color: rgb(7, 0, 55);
                             }
+
+
+
+                        /* default is hidden */
+                        #about-us {
+                            position: absolute;
+                            margin-top: 15%;
+                            margin-left: 21%;
+                            padding: 30px;
+
+                            /* width: 9vw; */
+                            /* height: 9vw; */
+
+                            width: 50%;
+                            height: 50%;
+
+                            background-color: rgb(7, 0, 55);
+                            color: #77dfff;
+                            /* font-size: 1.15vw; */
+                            font-size: 1.15vmax;
+
+
+                            border: solid #dadada;
+                            border-width: 2px;
+                            border-radius: 70px;
+                            z-index: 1;
+                            display: none;        
+                        }
+
+                        /* default is hidden */
+                        #contact-us {
+                            position: absolute;
+                            margin-top: 29%;
+                            margin-left: 40%;
+                            padding: 30px;
+                        
+                            /* width: 9vw; */
+                            /* height: 9vw; */
+                        
+                            width: 13%;
+                            height: 5%;
+                        
+                            background-color: rgb(7, 0, 55);
+                            color: #77dfff;
+                            /* font-size: 1.15vw; */
+                            font-size: 1.15vmax;
+                        
+                        
+                            border: solid #dadada;
+                            border-width: 2px;
+                            border-radius: 70px;
+                            z-index: 1;
+                            display: none;        
+                        }

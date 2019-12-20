@@ -146,3 +146,19 @@ $("#image-display-2").on("click", function (event) {
         $(this).css("display", "none");
     });
 });
+
+$("#about-tab").on("click", function (event) {
+    event.preventDefault();
+
+    $("#about-us").fadeToggle(2000, function () {
+        $(this).css("visibility", "visible");
+    });
+});
+
+$("#contact-tab").on("click", function (event) {
+    event.preventDefault();
+
+    $("#contact-us").fadeToggle(2000, function () {
+        $(this).css("visibility", "visible");
+    });
+});
