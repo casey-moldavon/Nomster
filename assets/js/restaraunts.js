@@ -220,8 +220,12 @@ class Restaraunts {
             for (var i = 0; i < data.businesses.length; ++i) {
                 self.listing.businesses.push(data.businesses[i]);
             }
+            self.store();
+            if (self.listing.businesses.length === self.listing.total) {
+                self.callback(self.listing.businesses).bind(self);
+            }
 
-            var error = function(jqXHR, textStatus, errorThrown) {
+            var error = function (jqXHR, textStatus, errorThrown) {
                 /* this used in ajax calls so "this" is the ajax object */
                 var ajaxUrl = "".concat(this.url);
                 if (this.retries > 0) {
@@ -240,8 +244,9 @@ class Restaraunts {
                                 self.listing.businesses.push(data.businesses[i]);
                             }
                             self.store();
-                            if (self.listing.businesses.length === self.listing.total) {
-                                self.callback(self).bind(self);
+                            if (this.retries === 0 || self.listing.businesses.length === self.listing.total) {
+                                //self.callback(self.listing.businesses).bind(self);
+                                self.callback(self.listing.businesses);
                             }
                         },
                             function (jqXHR, textStatus, errorThrown) {
@@ -268,7 +273,7 @@ class Restaraunts {
                     }
                     self.store();
                     if (this.retries === 0 || self.listing.businesses.length === self.listing.total) {
-                        self.callback(self).bind(self);
+                        self.callback(self.listing.businesses).bind(self);
                     }
                 },
                     function (jqXHR, textStatus, errorThrown) {
@@ -295,7 +300,7 @@ class Restaraunts {
                     break;
                 }
             }
-            /* code to check the content of the categoriries for discarded content 
+            /* code to check the content of the categories for discarded content 
             if (j === business.categories.length) {
                 console.log("INDEX: " + i);
                 for (var j = 0; j < business.categories.length; ++j) {
@@ -304,8 +309,8 @@ class Restaraunts {
             } */
         }
 
-        processed_cuisines = Object.entries(processed_cuisines).sort((a,b) => a[1].length-b[1].length);
-        while(processed_cuisines[0][1].length === 0) {
+        processed_cuisines = Object.entries(processed_cuisines).sort((a, b) => a[1].length - b[1].length);
+        while (processed_cuisines[0][1].length === 0) {
             processed_cuisines.shift();
         }
         var temp = [];
@@ -316,3 +321,41 @@ class Restaraunts {
         this.listing.total = this.listing.businesses.length;
     }
 }
+
+function updateNomNoms(search, callback) {
+    var base = { term: "restaraunts", location: "160 Spear Street, San Francisco, CA", range: 1000 };
+    var search = { ...base, ...search };
+    return new Restaraunts(search, callback, true);
+}
+
+function updateNomNomsCallback(businesses) {
+    this.process();
+    var parent = $("<div>");
+    parent.addClass("businesses");
+    for (business of this.listing.businesses) {
+        var child = $("<div>");
+        child.addClass("business");
+        child.attr("data-lat",business.coordinates.latitude);
+        child.attr("data-lon",business.coordinates.longitude);
+        var a = $("<a>");
+        a.addClass("name");
+        a.attr("href", business.url);
+        a.text(business.name);
+        child.append(a);
+        var display_address0 = $("<p>");
+        display_address0.text(business.location.display_address[0]);
+        var display_address1 = $("<p>");
+        display_address1.text(business.location.display_address[1]);
+        child.append(display_address0);
+        child.append(display_address1);
+        var phone = $("<a>");
+        phone.attr("href","tel:"+business.phone);
+        phone.text(business.phone);
+        child.append(phone);
+        parent.append(child);
+    }
+    $("#nom-list").empty();
+    $("#nom-list").append(parent);
+}
+
+var c = updateNomNoms({}, updateNomNomsCallback);
