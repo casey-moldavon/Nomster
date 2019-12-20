@@ -178,21 +178,22 @@ class Restaraunts {
         queryObj.limit = queryObj.limit || 50;
         // part of ES6, permitting merging of two objects with keys being overwritten
         // by items later in the list
+        queryObj.categories = queryObj.categories || cuisines.join(",");
+        queryObj.sort_by = queryObj.sort_by || "distance";
+
         queryObj = { ...base, ...queryObj };
 
         function constructURL(queryObj, retries, timeout) {
             retries = retries || 3;
             timeout = timeout || 2000;
-            queryObj.categories = cuisines.join(",");
+
             var query = Object.entries(queryObj).map(a => a[0].concat("=", a[1])).join("&");
             return {
                 url: 'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?' + query,
                 method: "GET",
                 headers: {
                     authorization: "Bearer ".concat(apiKey),
-                },
-                timeout: timeout,
-                retries: retries
+                }
             };
         }
 
@@ -248,26 +249,27 @@ class Restaraunts {
              * @return true if success results in completion of op, else false
              */
             var error = function (jqXHR, textStatus, errorThrown) {
-                console.log("ERROR");
                 /* this used in ajax calls so "this" is the ajax object */
-                var ajaxUrl = "".concat(this.url);
-                if (this.retries > 0) {
-                    console.log(this.retries);
-                    --this.retries;
-                    setTimeout(function () {
-                        $.ajax(constructURL(queryObj, this.retries)).then(
-                            function (data, textStatus, jqXHR) {
-                                success.call(this, data, textStatus, jqXHR);
-                            },
-                            function (jqXHR, textStatus, errorThrown) {
-                                error.call(this, jqXHR, textStatus, errorThrown);
+                let timeout = jqXHR.getResponseHeader("Retry-After") || 2000;
+                let url = this.url; 
+                setTimeout(function () {
+                    $.ajax(
+                        {
+                            url: url,
+                            method: "GET",
+                            headers: {
+                                authorization: "Bearer ".concat(apiKey),
                             }
-                        );
-                    }, this.timeout);
-                }
-                else {
-                    console.log("TIMEOUT!!!!");
-                }
+                        }
+                    ).then(
+                        function (data, textStatus, jqXHR) {
+                            success.call(this, data, textStatus, jqXHR);
+                        },
+                        function (jqXHR, textStatus, errorThrown) {
+                            error.call(this, jqXHR, textStatus, errorThrown);
+                        }
+                    );
+                }, timeout);
             }
 
             /* if transaction complete */
@@ -275,18 +277,24 @@ class Restaraunts {
                 return;
             }
 
-            // if more than one request is needed, generate all the remaining ajax requests at the same time.
+            var ajaxRequests = [];
             for (queryObj.offset = queryObj.limit; queryObj.offset < self.listing.total; queryObj.offset += queryObj.limit) {
-                $.ajax(constructURL(queryObj)).then(
+                ajaxRequests.push($.ajax(constructURL(queryObj)).then(
                     function (data, textStatus, jqXHR) {
                         success.call(this, data, textStatus, jqXHR);
                     },
                     function (jqXHR, textStatus, errorThrown) {
-                        /* error, since it's in the window this must use call to use the ajax this */
+                        // error, since it's in the window this must use call to use the ajax this 
                         error.call(this, jqXHR, textStatus, errorThrown);
                     }
-                );
+                ));
             }
+
+            $.when.apply($, ajaxRequests).then(
+                function (data, textStatus, jqXHR) {
+                    console.log("DONE!");
+                }
+            );
         });
     }
 
