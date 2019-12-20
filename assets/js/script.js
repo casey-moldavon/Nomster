@@ -9,7 +9,7 @@ function GetMap(objQuery) {
     });
 
     /* if not location was present in the objQuery object then */
-    if (!("location" in objQuery)) {
+    if (objQuery && !("location" in objQuery)) {
         /* get current position from the navigator */
         navigator.geolocation.getCurrentPosition(function (position) {
             var loc = new Microsoft.Maps.Location(
