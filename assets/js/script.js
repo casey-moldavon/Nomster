@@ -7,6 +7,25 @@ function GetMap(objQuery) {
     var map = new Microsoft.Maps.Map('#myMap', {
         credentials: "ArfOhekfSK9rly4qjcdt20SypfRiLnIYtUbxAzrv6-PDjseOmmMguOsqBYcrD-sW"
     });
+    infobox = new Microsoft.Maps.Infobox(map.getCenter(), {
+        visible: false
+    });
+
+    //Assign the infobox to a map instance.
+    infobox.setMap(map);
+
+    function pushpinClicked(e) {
+        //Make sure the infobox has metadata to display.
+        if (e.target.metadata) {
+            //Set the infobox options with the metadata of the pushpin.
+            infobox.setOptions({
+                location: e.target.getLocation(),
+                title: e.target.metadata.title,
+                description: e.target.metadata.description,
+                visible: true
+            });
+        }
+    }
 
     /* if not location was present in the objQuery object then */
     if (objQuery && !("location" in objQuery)) {
@@ -19,7 +38,9 @@ function GetMap(objQuery) {
             userLong = position.coords.longitude;
             userLocationGlobal = loc;
             //Add a pushpin at the user's location.
-            var pin = new Microsoft.Maps.Pushpin(loc);
+            var pin = new Microsoft.Maps.Pushpin(loc, {
+                icon: 'assets/images/monster-1-icon.png'
+            });
             map.entities.push(pin);
             //Center the map on the user's location.
             map.setView({ center: loc, zoom: 15 });
@@ -35,6 +56,11 @@ function GetMap(objQuery) {
 
                     let loc = new Microsoft.Maps.Location(lat, lon);
                     let pin = new Microsoft.Maps.Pushpin(loc);
+                    pin.metadata = {
+                        title: business.name,
+                        description: business.location.display_address.join("\n")
+                    };
+                    Microsoft.Maps.Events.addHandler(pin, 'click', pushpinClicked);
                     map.entities.push(pin);
                 }
 
@@ -60,6 +86,11 @@ function GetMap(objQuery) {
 
                     let loc = new Microsoft.Maps.Location(lat, lon);
                     let pin = new Microsoft.Maps.Pushpin(loc);
+                    pin.metadata = {
+                        title: business.name,
+                        description: business.location.display_address.join("\n")
+                    };
+                    Microsoft.Maps.Events.addHandler(pin, 'click', pushpinClicked);
                     map.entities.push(pin);
                 }
 
