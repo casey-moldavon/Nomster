@@ -28,17 +28,31 @@ For Front-End there are typically four primary challenges i tend to encounter on
 
 ![wireframe](assets/images/wire-frame-compare.jpg)
 
+# Back End Yelp (Manuel Nunes)
 
+Work was completed on the query to Yelp and attempting to make it 1) stable and 2) performant.
+
+Examples are as follows for relevant code excerpts:
+
+This first image is associated with a request from the Yelp API and shows the general format of the JSON object returned.
+Several of these JSON objects had to be returned to complete the entire data set for analysis.  Data was consolidated into a
+single list of businesses which was then used by all "Nomster" page functionality.
+
+![Example JSON](assets/images/query_js.PNG)
+
+This is an example of the AJAX calls used and my effort at making the retrieval of the entire data set performant.
+
+![AJAX Example](assets/images/code_capture.PNG)
 
 ## Built With
 
 * [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
 * [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
-* [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-* [YelpAPI](https://www.yelp.com/developers)
-* [BingMapsAPI](https://www.microsoft.com/en-us/maps/choose-your-bing-maps-api)
-* [GoogleFonts](https://fonts.google.com/)
-*[SemanticUI](https://semantic-ui.com/)
+* [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+* [Yelp API](https://www.yelp.com/developers)
+* [Bing Maps API](https://www.microsoft.com/en-us/maps/choose-your-bing-maps-api)
+* [Google Fonts](https://fonts.google.com/)
+* [Semantic-UI](https://semantic-ui.com/)
 
 ## Deployed Link
 
@@ -50,9 +64,9 @@ For Front-End there are typically four primary challenges i tend to encounter on
 * **Manuel Nunes, Casey Moldavon, Lucas Coffee** 
 
 **Manuel Nunes**
-- [Link to Portfolio Site]()
-- [Link to Github]()
-- [Link to LinkedIn]()
+- [Link to Portfolio Site](https://redmarmaduke.github.io/responsive-portfolio/)
+- [Link to Github](https://github.com/redmarmaduke)
+- [Link to LinkedIn](https://www.linkedin.com/in/manuel-nunes-272ba31b/)
 
 **Casey Moldavon**
 - [Link to Portfolio Site](https://casey-moldavon.github.io/responsive-portfolio/)
