@@ -48,9 +48,9 @@ Nomster uses Yelp and Bing APIs to present you with a list and map location of r
 - [Link to LinkedIn]()
 
 **Casey Moldavon**
-- [Link to Portfolio Site]()
-- [Link to Github]()
-- [Link to LinkedIn]()
+- [Link to Portfolio Site](https://casey-moldavon.github.io/responsive-portfolio/)
+- [Link to Github](https://github.com/casey-moldavon/group-4-project)
+- [Link to LinkedIn](https://www.linkedin.com/in/casey-moldavon-442a1761/)
 
 **Lucas Coffee**
 - [Link to Portfolio Site](https://kalashnikoffee.github.io/responsive-bio/)
